@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tradify.Data;
 
@@ -11,9 +12,11 @@ using Tradify.Data;
 namespace Tradify.Migrations
 {
     [DbContext(typeof(TradifyContext))]
-    partial class TradifyContextModelSnapshot : ModelSnapshot
+    [Migration("20260804140700_ItemPedido")]
+    partial class ItemPedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -7,7 +7,6 @@ public class CreatePedidoDto
     [Required(ErrorMessage = "O cliente é obrigatório")]
     public int ClienteId { get; set; }
 
-    [Required]
     public DateTime Data { get; set; } = DateTime.Now;
 
     [Required(ErrorMessage = "O endereço é obrigatório")]

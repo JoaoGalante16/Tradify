@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tradify.Data;
 
@@ -11,9 +12,11 @@ using Tradify.Data;
 namespace Tradify.Migrations
 {
     [DbContext(typeof(TradifyContext))]
-    partial class TradifyContextModelSnapshot : ModelSnapshot
+    [Migration("20260804131058_Cliente e Pedido")]
+    partial class ClienteePedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,27 +48,6 @@ namespace Tradify.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("Tradify.Models.ItemPedido", b =>
-                {
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Preco")
-                        .HasColumnType("double");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
-                    b.HasKey("PedidoId", "ProdutoId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ItensPedidos");
                 });
 
             modelBuilder.Entity("Tradify.Models.Pedido", b =>
@@ -116,25 +98,6 @@ namespace Tradify.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("Tradify.Models.ItemPedido", b =>
-                {
-                    b.HasOne("Tradify.Models.Pedido", "Pedido")
-                        .WithMany("Itens")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Tradify.Models.Produto", "Produto")
-                        .WithMany("Itens")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pedido");
-
-                    b.Navigation("Produto");
-                });
-
             modelBuilder.Entity("Tradify.Models.Pedido", b =>
                 {
                     b.HasOne("Tradify.Models.Cliente", "Cliente")
@@ -149,16 +112,6 @@ namespace Tradify.Migrations
             modelBuilder.Entity("Tradify.Models.Cliente", b =>
                 {
                     b.Navigation("Pedidos");
-                });
-
-            modelBuilder.Entity("Tradify.Models.Pedido", b =>
-                {
-                    b.Navigation("Itens");
-                });
-
-            modelBuilder.Entity("Tradify.Models.Produto", b =>
-                {
-                    b.Navigation("Itens");
                 });
 #pragma warning restore 612, 618
         }

@@ -32,7 +32,7 @@ public class PedidoController : ControllerBase
     [HttpGet]
     public IEnumerable<ReadPedidoDto> RecuperaPedido([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        return _mapper.Map<List<ReadPedidoDto>>(_context.Pedidos.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadPedidoDto>>(_context.Pedidos.Skip(skip).Take(take).ToList());
     }
 
     [HttpGet("{id}")]

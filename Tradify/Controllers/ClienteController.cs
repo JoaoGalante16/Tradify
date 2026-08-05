@@ -32,7 +32,7 @@ public class ClienteController : ControllerBase
     [HttpGet]
     public IEnumerable<ReadClienteDto> RecuperaCliente([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        return _mapper.Map<List<ReadClienteDto>>(_context.Clientes.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadClienteDto>>(_context.Clientes.Skip(skip).Take(take).ToList());
     }
 
     [HttpGet("{id}")]

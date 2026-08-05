@@ -9,7 +9,8 @@ public class ClienteProfile : Profile
     public ClienteProfile()
     {
         CreateMap<CreateClienteDto, Cliente>();
-        CreateMap<Cliente, ReadClienteDto>();
+        CreateMap<Cliente, ReadClienteDto>()
+        .ForMember(clienteDto => clienteDto.Pedidos, opt => opt.MapFrom(cliente => cliente.Pedidos));
         CreateMap<UpdateClienteDto, Cliente>();
         CreateMap<Cliente, UpdateClienteDto>();
     }
